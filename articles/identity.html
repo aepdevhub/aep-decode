@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -72,6 +73,23 @@ h3 {
     margin: 20px 0;
 }
 
+.screenshot {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 25px auto;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+}
+
+.caption {
+    text-align: center;
+    color: #667085;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 25px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -102,353 +120,1419 @@ li {
 
 </head>
 
+
 <body>
 
+
 <header>
+
 <a href="../index.html">AEP Decode</a>
+
 </header>
+
 
 <div class="container">
 
+
 <h1>AEP Identity</h1>
 
+
 <p>
+
 Identity is one of the most important concepts in Adobe Experience Platform.
+
 It helps AEP understand that different identifiers can belong to the same
-person, device or business entity.
+person, device, account or other entity.
+
 </p>
+
+
+<div class="highlight">
+
+<strong>Simple idea:</strong>
+
+<p>
+
+A customer can interact with different systems using different identifiers.
+AEP uses identity information and identity relationships to connect those
+identifiers.
+
+</p>
+
+</div>
+
+
+
+<!-- 1 -->
 
 <h2>1. What is an Identity?</h2>
 
+
 <p>
+
 An identity represents an identifiable person, device, account or other
 entity across different systems.
+
 </p>
+
+
+<p>
+
+A customer may interact with an organization through multiple identifiers.
+
+</p>
+
 
 <div class="example">
 
-<strong>Example customer:</strong><br><br>
+<strong>Example customer:</strong>
 
-Customer ID → CUST10001<br>
-Email → customer@example.com<br>
-Mobile → 9876543210<br>
+<br><br>
+
+Customer ID → CUST10001
+
+<br>
+
+Email → customer@example.com
+
+<br>
+
+Mobile → 9876543210
+
+<br>
+
 CRM ID → CRM78901
 
 </div>
 
+
 <p>
+
 These identifiers may come from different systems, but they can represent
-the same customer.
+the same customer when the appropriate identity relationships are available.
+
 </p>
+
+
+
+<!-- 2 -->
 
 <h2>2. What is an Identity Namespace?</h2>
 
+
 <p>
-An Identity Namespace provides context for an identity value. It tells AEP
-what type of identifier the value represents.
+
+An Identity Namespace provides context for an identity value.
+
+It tells AEP what type of identifier the value represents.
+
 </p>
+
 
 <table>
 
 <tr>
+
 <th>Namespace</th>
+
 <th>Identity Value</th>
+
 </tr>
 
+
 <tr>
+
 <td>Email</td>
+
 <td>customer@example.com</td>
+
 </tr>
 
+
 <tr>
+
 <td>Phone</td>
+
 <td>9876543210</td>
+
 </tr>
 
+
 <tr>
+
 <td>Customer ID</td>
+
 <td>CUST10001</td>
+
 </tr>
 
+
 <tr>
+
 <td>CRM ID</td>
+
 <td>CRM78901</td>
+
 </tr>
 
 </table>
 
+
 <div class="highlight">
 
-<strong>Remember:</strong><br><br>
+<strong>Remember:</strong>
 
-Identity Value + Identity Namespace = Identity
+<br><br>
+
+Identity Value + Identity Namespace = Identity context
 
 </div>
 
-<h2>3. Identity Example</h2>
+
+
+<!-- 3 -->
+
+<h2>3. Identity vs Identity Namespace</h2>
+
+
+<table>
+
+<tr>
+
+<th>Concept</th>
+
+<th>Meaning</th>
+
+<th>Example</th>
+
+</tr>
+
+
+<tr>
+
+<td>Identity</td>
+
+<td>The actual identifier value</td>
+
+<td>CUST10001</td>
+
+</tr>
+
+
+<tr>
+
+<td>Identity Namespace</td>
+
+<td>Defines the type or context of the identifier</td>
+
+<td>Customer ID</td>
+
+</tr>
+
+
+<tr>
+
+<td>Identity Value</td>
+
+<td>The actual value supplied by the source</td>
+
+<td>customer@example.com</td>
+
+</tr>
+
+</table>
+
 
 <div class="example">
 
-Email Namespace<br>
-↓<br>
-customer@example.com<br><br>
+<strong>Example:</strong>
 
-Customer ID Namespace<br>
-↓<br>
-CUST10001<br><br>
+<br><br>
 
-CRM ID Namespace<br>
-↓<br>
+Namespace → Email
+
+<br>
+
+Identity Value → customer@example.com
+
+<br><br>
+
+Namespace → Customer ID
+
+<br>
+
+Identity Value → CUST10001
+
+</div>
+
+
+
+<!-- 4 -->
+
+<h2>4. Identity in Adobe Experience Platform</h2>
+
+
+<p>
+
+AEP provides an <strong>Identities</strong> area where identity information
+can be viewed and identity namespaces can be created.
+
+</p>
+
+
+<p>
+
+The Identites area provides views such as:
+
+</p>
+
+
+<ul>
+
+<li>Overview</li>
+
+<li>Namespaces</li>
+
+<li>Graph Viewer</li>
+
+<li>Graph Simulation</li>
+
+</ul>
+
+
+<p>
+
+The Overview screen also provides identity and identity graph information.
+
+</p>
+
+
+<img
+src="../images/aep-identities-overview.png"
+alt="Adobe Experience Platform Identities Overview"
+class="screenshot"
+>
+
+
+<p class="caption">
+
+AEP → Identities → Overview
+
+</p>
+
+
+
+<!-- 5 -->
+
+<h2>5. Creating an Identity Namespace</h2>
+
+
+<p>
+
+A custom identity namespace can be created from the
+<strong>Create identity namespace</strong> option.
+
+</p>
+
+
+<div class="flow">
+
+AEP
+
+↓
+
+Identities
+
+↓
+
+Create identity namespace
+
+↓
+
+Enter namespace details
+
+↓
+
+Create
+
+</div>
+
+
+<img
+src="../images/create-identity-namespace.png"
+alt="Create identity namespace in Adobe Experience Platform"
+class="screenshot"
+>
+
+
+<p class="caption">
+
+Create identity namespace screen in AEP
+
+</p>
+
+
+
+<!-- 6 -->
+
+<h2>6. Create Identity Namespace – Fields</h2>
+
+
+<p>
+
+The Create identity namespace screen contains several important fields.
+
+</p>
+
+
+<table>
+
+<tr>
+
+<th>Field</th>
+
+<th>Purpose</th>
+
+<th>Example from training</th>
+
+</tr>
+
+
+<tr>
+
+<td>Display name</td>
+
+<td>
+
+Human-readable name of the identity namespace.
+
+</td>
+
+<td>
+
+Re Customer ID
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Identity symbol</td>
+
+<td>
+
+A unique symbol used to identify the namespace.
+
+</td>
+
+<td>
+
+recustomerid
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Description</td>
+
+<td>
+
+Describes the purpose of the identity namespace.
+
+</td>
+
+<td>
+
+This identity is created for Reliance Org customer.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Identity type</td>
+
+<td>
+
+Defines the type of identifier represented by the namespace.
+
+</td>
+
+<td>
+
+Individual cross-device ID
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+<div class="example">
+
+<strong>Training example:</strong>
+
+<br><br>
+
+Display name → Re Customer ID
+
+<br>
+
+Identity symbol → recustomerid
+
+<br>
+
+Description → This identity is created for Reliance Org customer.
+
+<br>
+
+Identity type → Individual cross-device ID
+
+</div>
+
+
+
+<!-- 7 -->
+
+<h2>7. Identity Type</h2>
+
+
+<p>
+
+When creating an identity namespace, AEP allows the appropriate identity
+type to be selected.
+
+</p>
+
+
+<p>
+
+The screen shown in the training session includes the following examples:
+
+</p>
+
+
+<table>
+
+<tr>
+
+<th>Identity Type</th>
+
+<th>Purpose</th>
+
+</tr>
+
+
+<tr>
+
+<td>Cookie ID</td>
+
+<td>
+
+Identifies web browsers.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Individual cross-device ID</td>
+
+<td>
+
+Represents an individual identifier such as a CRM ID or Login ID.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Hardware device ID</td>
+
+<td>
+
+Identifies hardware devices such as IDFA or GAID.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Non-people identifiers</td>
+
+<td>
+
+Identifiers that are not connected to a person graph, such as a product SKU.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Email</td>
+
+<td>
+
+Email addresses can be used as identities.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Phone number</td>
+
+<td>
+
+Phone numbers can be used as identities.
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+<!-- 8 -->
+
+<h2>8. Individual Cross-Device ID</h2>
+
+
+<p>
+
+The training screenshot shows
+<strong>Individual cross-device ID</strong> as one of the identity type
+options.
+
+</p>
+
+
+<p>
+
+This type can represent an individual identifier such as:
+
+</p>
+
+
+<ul>
+
+<li>CRM ID</li>
+
+<li>Login ID</li>
+
+<li>Customer ID</li>
+
+</ul>
+
+
+<div class="example">
+
+<strong>Example:</strong>
+
+<br><br>
+
+Customer ID → CUST10001
+
+<br>
+
+Namespace → Re Customer ID
+
+<br>
+
+Identity Type → Individual cross-device ID
+
+</div>
+
+
+
+<!-- 9 -->
+
+<h2>9. Identity Namespace Example – Re Customer ID</h2>
+
+
+<p>
+
+During the training session, an example custom identity namespace was
+created for a customer identifier.
+
+</p>
+
+
+<div class="highlight">
+
+<strong>Namespace configuration</strong>
+
+<br><br>
+
+Display Name:
+
+<strong>Re Customer ID</strong>
+
+<br><br>
+
+Identity Symbol:
+
+<strong>recustomerid</strong>
+
+<br><br>
+
+Description:
+
+<strong>This identity is created for Reliance Org customer.</strong>
+
+<br><br>
+
+Identity Type:
+
+<strong>Individual cross-device ID</strong>
+
+</div>
+
+
+<p>
+
+The identity symbol is the technical identifier for the namespace, while
+the display name is the human-readable name shown in the interface.
+
+</p>
+
+
+
+<!-- 10 -->
+
+<h2>10. Identity Example</h2>
+
+
+<div class="example">
+
+Email Namespace
+
+<br>
+
+↓
+
+customer@example.com
+
+<br><br>
+
+
+Customer ID Namespace
+
+<br>
+
+↓
+
+CUST10001
+
+<br><br>
+
+
+CRM ID Namespace
+
+<br>
+
+↓
+
 CRM78901
 
 </div>
 
+
 <p>
-AEP can use these identifiers as part of identity resolution when the
-appropriate identity relationships are available.
+
+Each value has a namespace that provides context about what the identifier
+represents.
+
 </p>
 
-<h2>4. Identity Graph</h2>
+
+
+<!-- 11 -->
+
+<h2>11. Identity Graph</h2>
+
 
 <p>
+
 The Identity Graph represents relationships between identities.
-It can connect identifiers that are associated with the same customer.
+
+It can connect identifiers that are associated with the same customer or
+entity.
+
 </p>
+
 
 <div class="flow">
 
 Email
-<br>↓
+
+<br>
+
+↓
+
 Customer
-<br>↑
+
+<br>
+
+↑
+
+<br>
+
 Customer ID
-<br>↑
+
+<br>
+
+↑
+
+<br>
+
 CRM ID
-<br>↑
+
+<br>
+
+↑
+
+<br>
+
 Mobile
 
 </div>
 
-<p>
-This relationship helps AEP build a more complete understanding of a
-customer across different systems.
-</p>
-
-<h2>5. Tata / Croma Example</h2>
 
 <p>
-Consider a Tata ecosystem containing Croma, Tata Motors and Tata Insurance.
-A customer may interact with multiple Tata businesses using different
+
+The graph provides a way to understand relationships between different
 identifiers.
+
 </p>
+
+
+
+<!-- 12 -->
+
+<h2>12. Tata / Croma Example</h2>
+
+
+<p>
+
+Consider a Tata ecosystem containing different businesses such as
+Croma, Tata Motors and Tata Insurance.
+
+A customer may interact with different Tata businesses using different
+identifiers.
+
+</p>
+
 
 <div class="example">
 
-<strong>Customer:</strong> CUST10001<br><br>
+<strong>Customer:</strong> CUST10001
 
-Croma → customer@example.com<br>
-Tata Motors → CRM78901<br>
-Tata Insurance → 9876543210<br><br>
+<br><br>
+
+Croma → customer@example.com
+
+<br>
+
+Tata Motors → CRM78901
+
+<br>
+
+Tata Insurance → 9876543210
+
+<br><br>
 
 Common Customer ID → CUST10001
 
 </div>
 
+
 <div class="flow">
 
 Croma
+
 +
+
 Tata Motors
+
 +
+
 Tata Insurance
+
 ↓
+
 Identity Resolution
+
 ↓
+
 Unified Customer Understanding
 
 </div>
 
-<h2>6. Identity in an XDM Schema</h2>
+
+
+<!-- 13 -->
+
+<h2>13. Identity in an XDM Schema</h2>
+
 
 <p>
-An XDM field can be configured to participate in identity handling.
-For example, a Customer ID or Email field can be designated as an identity
-when the data model and use case require it.
+
+Identity information is also connected with the XDM data model.
+
+An XDM field can be configured to participate in identity handling when
+the data model and use case require it.
+
 </p>
+
 
 <div class="example">
 
-<strong>Example:</strong><br><br>
+<strong>Example:</strong>
 
-Customer ID<br>
-Type → String<br>
-Identity → Yes<br>
+<br><br>
+
+Customer ID
+
+<br>
+
+Type → String
+
+<br>
+
+Identity → Yes
+
+<br>
+
 Identity Namespace → Customer ID
 
 </div>
 
-<h2>7. Primary Identity</h2>
 
 <p>
-A primary identity can be designated for a record when defining the identity
-behavior of the schema.
+
+For example, a Customer ID field or Email field may be configured as an
+identity field for the appropriate schema use case.
+
 </p>
+
+
+
+<!-- 14 -->
+
+<h2>14. Primary Identity</h2>
+
+
+<p>
+
+A primary identity can be designated for a record when defining the
+identity behavior of a schema.
+
+</p>
+
 
 <div class="highlight">
 
-Example:<br><br>
+<strong>Example:</strong>
 
-Customer ID = CUST10001<br>
-Namespace = Customer ID<br>
+<br><br>
+
+Customer ID = CUST10001
+
+<br>
+
+Namespace = Customer ID
+
+<br>
+
 Primary Identity = Yes
 
 </div>
 
-<h2>8. Identity Resolution</h2>
+
+
+<!-- 15 -->
+
+<h2>15. Identity Resolution</h2>
+
 
 <p>
+
 Identity resolution is the process of determining relationships between
-different identity values so that customer information from different
-sources can be connected.
+different identity values so that information from different sources can
+be connected.
+
 </p>
+
 
 <div class="flow">
 
 Email
+
 +
+
 Mobile
+
 +
+
 CRM ID
+
 +
+
 Customer ID
+
 ↓
+
 Identity Resolution
+
 ↓
+
 Customer Profile
 
 </div>
 
-<h2>9. Why Identity is Important in AEP</h2>
+
+<p>
+
+Identity resolution is important when a customer interacts with an
+organization through multiple systems and identifiers.
+
+</p>
+
+
+
+<!-- 16 -->
+
+<h2>16. Why Identity is Important in AEP</h2>
+
 
 <ul>
 
-<li>Connects customer information from different systems</li>
+<li>
 
-<li>Supports unified customer profiles</li>
+Connects customer information from different systems.
 
-<li>Helps connect online and offline interactions</li>
+</li>
 
-<li>Supports customer journey analysis</li>
+<li>
 
-<li>Can support segmentation and activation use cases</li>
+Supports unified customer profiles.
 
-<li>Helps understand relationships between identifiers</li>
+</li>
+
+<li>
+
+Helps connect online and offline interactions.
+
+</li>
+
+<li>
+
+Supports customer journey analysis.
+
+</li>
+
+<li>
+
+Can support segmentation and activation use cases.
+
+</li>
+
+<li>
+
+Helps understand relationships between identifiers.
+
+</li>
 
 </ul>
 
-<h2>10. Identity vs Identity Namespace</h2>
 
-<table>
 
-<tr>
-<th>Identity</th>
-<th>Identity Namespace</th>
-</tr>
+<!-- 17 -->
 
-<tr>
-<td>The actual identifier value</td>
-<td>Defines the type/context of the identifier</td>
-</tr>
+<h2>17. Developer View</h2>
 
-<tr>
-<td>CUST10001</td>
-<td>Customer ID</td>
-</tr>
-
-<tr>
-<td>customer@example.com</td>
-<td>Email</td>
-</tr>
-
-<tr>
-<td>9876543210</td>
-<td>Phone</td>
-</tr>
-
-</table>
-
-<h2>11. Developer View</h2>
 
 <p>
-As an AEP developer, you should understand how identity information moves
-from source data into XDM, datasets and ultimately customer profiles.
+
+As an AEP developer, it is important to understand how identity information
+moves from source data into XDM, datasets and customer profiles.
+
 </p>
+
 
 <div class="flow">
 
 Source Data
+
 ↓
+
 XDM Schema
+
 ↓
+
 Identity Field
+
 ↓
+
 Identity Namespace
+
 ↓
+
 Dataset
+
 ↓
+
 Identity Graph
+
 ↓
+
 Real-Time Customer Profile
 
 </div>
 
-<h2>12. Interview Questions</h2>
+
+<p>
+
+This gives a developer a high-level view of where identity fits into the
+AEP data flow.
+
+</p>
+
+
+
+<!-- 18 -->
+
+<h2>18. Simple End-to-End Example</h2>
+
+
+<div class="example">
+
+<strong>Source system</strong>
+
+<br><br>
+
+Customer ID = CUST10001
+
+<br>
+
+Email = customer@example.com
+
+<br>
+
+Phone = 9876543210
+
+<br><br>
+
+
+<strong>↓</strong>
+
+<br><br>
+
+
+<strong>XDM Schema</strong>
+
+<br>
+
+Identity fields are defined according to the business requirement.
+
+<br><br>
+
+
+<strong>↓</strong>
+
+<br><br>
+
+
+<strong>Dataset</strong>
+
+<br>
+
+Data is ingested into the dataset.
+
+<br><br>
+
+
+<strong>↓</strong>
+
+<br><br>
+
+
+<strong>Identity Graph</strong>
+
+<br>
+
+Identity relationships can be represented.
+
+<br><br>
+
+
+<strong>↓</strong>
+
+<br><br>
+
+
+<strong>Customer Profile</strong>
+
+<br>
+
+Customer information can contribute to the profile when the relevant
+Profile and identity configuration requirements are met.
+
+</div>
+
+
+
+<!-- 19 -->
+
+<h2>19. Identity vs Identity Namespace – Quick Revision</h2>
+
+
+<table>
+
+<tr>
+
+<th>Question</th>
+
+<th>Answer</th>
+
+</tr>
+
+
+<tr>
+
+<td>What is Identity?</td>
+
+<td>
+
+An identifier representing a person, device, account or other entity.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>What is Identity Value?</td>
+
+<td>
+
+The actual identifier value.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>What is Identity Namespace?</td>
+
+<td>
+
+It provides context for the identifier.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>What is Identity Symbol?</td>
+
+<td>
+
+The unique symbol used for an identity namespace.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>What is Identity Graph?</td>
+
+<td>
+
+It represents relationships between identities.
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>What is Identity Resolution?</td>
+
+<td>
+
+Connecting related identity information across sources.
+
+</td>
+
+</tr>
+
+</table>
+
+
+
+<!-- 20 -->
+
+<h2>20. Interview Questions</h2>
+
 
 <h3>What is an identity in AEP?</h3>
 
 <p>
+
 An identity is an identifier representing a person, device, account or
 other entity.
+
 </p>
+
 
 <h3>What is an identity namespace?</h3>
 
 <p>
-An identity namespace provides context for an identity value, such as Email,
-Phone or Customer ID.
+
+An identity namespace provides context for an identity value, such as
+Email, Phone or a Customer ID.
+
 </p>
+
+
+<h3>What is the difference between identity and identity namespace?</h3>
+
+<p>
+
+The identity is the identifier value, while the namespace provides the
+context or type of that identifier.
+
+</p>
+
+
+<h3>What is an identity symbol?</h3>
+
+<p>
+
+The identity symbol is the unique symbol used to identify an identity
+namespace.
+
+</p>
+
 
 <h3>What is an identity graph?</h3>
 
 <p>
-An identity graph represents relationships between identity values and
-helps connect identifiers associated with the same entity.
+
+An identity graph represents relationships between identity values.
+
 </p>
+
 
 <h3>Why is identity important in AEP?</h3>
 
 <p>
-Identity allows data from different sources and systems to be connected
-when those identifiers represent the same customer or entity.
+
+Identity helps connect information from different sources when the
+identifiers represent the same customer or entity.
+
 </p>
 
-<h2>13. Quick Revision</h2>
+
+<h3>What is a primary identity?</h3>
+
+<p>
+
+A primary identity is the identity designated as the primary identifier
+for a record according to the schema configuration.
+
+</p>
+
+
+
+<!-- 21 -->
+
+<h2>21. Quick Revision</h2>
+
 
 <div class="highlight">
 
-<strong>Identity</strong> → Who or what is being identified?<br><br>
+<strong>Identity</strong>
 
-<strong>Identity Value</strong> → The actual identifier<br><br>
+→ Who or what is being identified?
 
-<strong>Identity Namespace</strong> → What type of identifier is it?<br><br>
+<br><br>
 
-<strong>Identity Graph</strong> → How are identifiers related?<br><br>
 
-<strong>Identity Resolution</strong> → Connecting related identities
+<strong>Identity Value</strong>
+
+→ The actual identifier.
+
+<br><br>
+
+
+<strong>Identity Namespace</strong>
+
+→ What type or context does the identifier have?
+
+<br><br>
+
+
+<strong>Identity Symbol</strong>
+
+→ Unique symbol for the namespace.
+
+<br><br>
+
+
+<strong>Identity Type</strong>
+
+→ Defines the type of identifier represented.
+
+<br><br>
+
+
+<strong>Identity Graph</strong>
+
+→ How are identities related?
+
+<br><br>
+
+
+<strong>Identity Resolution</strong>
+
+→ Connecting related identities.
 
 </div>
 
+
 </div>
+
 
 </body>
 
