@@ -1,316 +1,872 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AEP Schemas | AEP Decode</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f7fb;
-            color: #172033;
-            line-height: 1.6;
-        }
+<title>AEP Schemas | AEP Decode</title>
 
-        header {
-            background: #101828;
-            color: white;
-            padding: 20px 8%;
-        }
+<style>
 
-        header a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fb;
+    color: #172033;
+    line-height: 1.6;
+}
 
-        .container {
-            max-width: 950px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-        }
+header {
+    background: #101828;
+    color: white;
+    padding: 20px 8%;
+}
 
-        h1 {
-            color: #2563eb;
-        }
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        h2 {
-            margin-top: 35px;
-            color: #172033;
-        }
+.container {
+    max-width: 950px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+}
 
-        h3 {
-            color: #2563eb;
-        }
+h1 {
+    color: #2563eb;
+}
 
-        .example {
-            background: #eef4ff;
-            border-left: 4px solid #2563eb;
-            padding: 18px;
-            margin: 20px 0;
-        }
+h2 {
+    margin-top: 35px;
+    color: #172033;
+}
 
-        .flow {
-            background: #f0fdf4;
-            border-left: 4px solid #16a34a;
-            padding: 18px;
-            margin: 20px 0;
-            font-weight: bold;
-        }
+h3 {
+    color: #2563eb;
+}
 
-        code {
-            background: #f1f5f9;
-            padding: 3px 6px;
-            border-radius: 4px;
-        }
+.example {
+    background: #eef4ff;
+    border-left: 4px solid #2563eb;
+    padding: 18px;
+    margin: 20px 0;
+}
 
-        li {
-            margin: 8px 0;
-        }
+.flow {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 18px;
+    margin: 20px 0;
+    font-weight: bold;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
+.highlight {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    padding: 18px;
+    margin: 20px 0;
+}
 
-        th, td {
-            border: 1px solid #d0d5dd;
-            padding: 12px;
-            text-align: left;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
 
-        th {
-            background: #eef4ff;
-        }
-    </style>
+th, td {
+    border: 1px solid #d0d5dd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #eef4ff;
+}
+
+code {
+    background: #f1f5f9;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+li {
+    margin: 8px 0;
+}
+
+</style>
+
 </head>
 
 <body>
 
 <header>
-    <a href="../index.html">AEP Decode</a>
+<a href="../index.html">AEP Decode</a>
 </header>
 
 <div class="container">
 
-    <h1>AEP Schemas</h1>
+<h1>AEP Schemas</h1>
 
-    <p>
-        An XDM Schema defines how customer data is structured in Adobe
-        Experience Platform (AEP).
-    </p>
+<p>
+Schemas are one of the core concepts in Adobe Experience Platform.
+An AEP schema defines the structure and meaning of the data that is
+ingested into the platform.
+</p>
 
-    <h2>1. What is an XDM Schema?</h2>
+<p>
+Schemas help AEP understand what each field represents, what type of
+data it contains, and how that data can be used across datasets,
+identity and Real-Time Customer Profile.
+</p>
 
-    <p>
-        Think of a schema as the blueprint for your data.
-        It tells AEP what fields exist, what type of data they contain,
-        and how that data should be interpreted.
-    </p>
 
-    <div class="example">
-        <strong>Simple example:</strong><br><br>
+<h2>1. What is an AEP Schema?</h2>
 
-        Customer ID → CUST10001<br>
-        First Name → Rahul<br>
-        Email → rahul@example.com<br>
-        Mobile → 9876543210
-    </div>
+<p>
+An AEP schema is a blueprint that describes the structure of data
+stored in Adobe Experience Platform.
+</p>
 
-    <h2>2. Main Schema Types</h2>
+<div class="example">
 
-    <table>
-        <tr>
-            <th>Schema Type</th>
-            <th>Purpose</th>
-            <th>Example</th>
-        </tr>
+<strong>Example Customer Data:</strong><br><br>
 
-        <tr>
-            <td>Individual Profile</td>
-            <td>Stores customer/profile attributes</td>
-            <td>Name, email, phone, loyalty ID</td>
-        </tr>
+Customer ID → CUST10001<br>
+First Name → Rahul<br>
+Last Name → Kumar<br>
+Email → rahul@example.com<br>
+Mobile → 9876543210
 
-        <tr>
-            <td>Experience Event</td>
-            <td>Stores customer interactions/events</td>
-            <td>Product view, purchase, add-to-cart</td>
-        </tr>
+</div>
 
-        <tr>
-            <td>Custom / Other</td>
-            <td>Used for organization-specific data</td>
-            <td>Business-specific objects</td>
-        </tr>
-    </table>
+<p>
+The schema defines fields such as Customer ID, First Name, Email and
+Mobile, along with their data types and other properties.
+</p>
 
-    <h2>3. XDM Field Groups</h2>
 
-    <p>
-        Field groups are reusable collections of fields that can be added
-        to a schema.
-    </p>
+<h2>2. XDM - Experience Data Model</h2>
 
-    <div class="example">
-        <strong>Example:</strong><br><br>
+<p>
+AEP uses the Experience Data Model (XDM) to standardize the structure
+of data across different systems and applications.
+</p>
 
-        Personal Details Field Group<br>
-        → First Name<br>
-        → Last Name<br>
-        → Email<br>
-        → Phone
-    </div>
+<div class="flow">
 
-    <p>
-        Instead of manually creating every field, you can select an
-        appropriate field group and reuse standardized fields.
-    </p>
+Business Data
+↓
+XDM Schema
+↓
+Dataset
+↓
+Data Lake / Profile
+↓
+Analytics / Segmentation / Activation
 
-    <h2>4. Data Types</h2>
+</div>
 
-    <p>Common XDM data types include:</p>
+<p>
+XDM provides a common language for describing customer and business
+data.
+</p>
 
-    <ul>
-        <li>String</li>
-        <li>Integer</li>
-        <li>Boolean</li>
-        <li>Date</li>
-        <li>Date-Time</li>
-        <li>Number</li>
-        <li>Object</li>
-        <li>Array</li>
-    </ul>
 
-    <h2>5. Profile Schema vs Experience Event Schema</h2>
+<h2>3. Why Do We Need Schemas?</h2>
 
-    <h3>Individual Profile Schema</h3>
+<ul>
 
-    <p>
-        Represents relatively stable information about a customer.
-    </p>
+<li>Define the structure of incoming data</li>
 
-    <div class="example">
-        Customer ID = CUST10001<br>
-        Name = Ananya<br>
-        Email = ananya@example.com<br>
-        Loyalty Tier = Gold
-    </div>
+<li>Standardize data across different systems</li>
 
-    <h3>Experience Event Schema</h3>
+<li>Define field names and data types</li>
 
-    <p>
-        Represents something that happened at a particular point in time.
-    </p>
+<li>Support identity configuration</li>
 
-    <div class="example">
-        Customer CUST10001 viewed Product ABC123
-        at 10:30 AM.
-    </div>
+<li>Support Real-Time Customer Profile</li>
 
-    <h2>6. Identity in a Schema</h2>
+<li>Make data easier to understand and use</li>
 
-    <p>
-        Identity fields allow AEP to recognize and connect records belonging
-        to the same customer.
-    </p>
+<li>Help different applications work with consistent data</li>
 
-    <div class="example">
-        Customer ID → CUST10001<br>
-        Email → ananya@example.com<br>
-        CRM ID → CRM10001
-    </div>
+</ul>
 
-    <p>
-        One of these fields can be configured as an identity depending on
-        the organization's identity strategy.
-    </p>
 
-    <h2>7. Profile-Enabled Schema</h2>
+<h2>4. Main Types of Data in AEP</h2>
 
-    <p>
-        When a schema is enabled for Real-Time Customer Profile,
-        appropriate records can contribute to a unified customer profile.
-    </p>
+<p>
+AEP commonly works with data describing customer entities and
+customer interactions.
+</p>
 
-    <div class="flow">
-        Schema → Dataset → Profile → Unified Customer View
-    </div>
+<table>
 
-    <h2>8. Tata / Croma Example</h2>
+<tr>
+<th>Data Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
 
-    <p>
-        Imagine a Tata ecosystem containing Croma, Tata Motors,
-        Tata Insurance and other Tata businesses.
-    </p>
+<tr>
+<td>Profile Data</td>
+<td>Describes a customer or entity</td>
+<td>Name, Email, Customer ID</td>
+</tr>
 
-    <div class="example">
-        <strong>Customer:</strong> CUST10001<br><br>
+<tr>
+<td>Experience Event Data</td>
+<td>Describes an interaction or event</td>
+<td>Product View, Add to Cart, Purchase</td>
+</tr>
 
-        Email: customer@example.com<br>
-        Mobile: 9876543210<br>
-        Croma Purchase: Laptop<br>
-        Tata Motors Interest: SUV<br>
-        Insurance: Car Insurance
-    </div>
+</table>
 
-    <p>
-        Different systems can provide different customer information.
-        AEP uses schemas, datasets and identity services to organize
-        and connect this information.
-    </p>
 
-    <h2>9. Schema → Dataset Relationship</h2>
+<h2>5. Individual Profile Schema</h2>
 
-    <p>
-        A schema defines the structure, while a dataset is where the
-        data records are stored.
-    </p>
+<p>
+An Individual Profile schema is used to represent information about
+an individual customer or person.
+</p>
 
-    <div class="flow">
-        XDM Schema
-        ↓
-        Dataset
-        ↓
-        Data Ingestion
-        ↓
-        Profile / Data Lake
-    </div>
+<div class="example">
 
-    <h2>10. What You Should Know as an AEP Developer</h2>
+<strong>Example:</strong><br><br>
 
-    <ul>
-        <li>How to create an XDM schema</li>
-        <li>How to select a field group</li>
-        <li>How to create custom fields</li>
-        <li>How to define data types</li>
-        <li>How to configure identity fields</li>
-        <li>Difference between Profile and Experience Event schemas</li>
-        <li>How schemas relate to datasets</li>
-        <li>When to enable a schema for Real-Time Customer Profile</li>
-        <li>How schemas are used during data ingestion</li>
-        <li>How to work with schemas through AEP APIs</li>
-    </ul>
+Customer ID → CUST10001<br>
+First Name → Rahul<br>
+Last Name → Kumar<br>
+Email → rahul@example.com<br>
+Phone → 9876543210
 
-    <h2>11. Interview Question</h2>
+</div>
 
-    <div class="example">
-        <strong>Question:</strong>
-        What is the difference between a schema and a dataset in AEP?
-        <br><br>
+<p>
+This type of information can describe the customer itself rather than
+a particular interaction.
+</p>
 
-        <strong>Answer:</strong>
-        A schema defines the structure and meaning of the data,
-        while a dataset is the storage container that holds records
-        following that schema.
-    </div>
+
+<h2>6. Experience Event Schema</h2>
+
+<p>
+An Experience Event schema represents an interaction or activity
+performed by a customer or another entity.
+</p>
+
+<div class="example">
+
+<strong>Example Customer Events:</strong><br><br>
+
+Product Viewed<br>
+↓<br>
+Product Added to Cart<br>
+↓<br>
+Checkout Started<br>
+↓<br>
+Purchase Completed
+
+</div>
+
+<p>
+Each event can contain information such as the event time, product,
+customer identity and other relevant attributes.
+</p>
+
+
+<h2>7. Schema Components</h2>
+
+<p>
+An XDM schema is built using several important components.
+</p>
+
+<table>
+
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>Class</td>
+<td>Defines the basic structure and behavior of the schema</td>
+</tr>
+
+<tr>
+<td>Field Group</td>
+<td>Provides reusable groups of related fields</td>
+</tr>
+
+<tr>
+<td>Data Type</td>
+<td>Defines the type and structure of a field</td>
+</tr>
+
+<tr>
+<td>Attributes / Fields</td>
+<td>Store individual pieces of information</td>
+</tr>
+
+<tr>
+<td>Identity</td>
+<td>Allows a field to participate in identity handling</td>
+</tr>
+
+</table>
+
+
+<h2>8. Class</h2>
+
+<p>
+A class determines the base structure of an XDM schema and indicates
+the type of data the schema represents.
+</p>
+
+<div class="highlight">
+
+<strong>Think of a Class as:</strong><br><br>
+
+The foundation or starting point of an XDM schema.
+
+</div>
+
+<p>
+The class is selected when creating a schema and provides the basic
+structure on which field groups and fields are added.
+</p>
+
+
+<h2>9. Field Groups</h2>
+
+<p>
+Field groups are reusable collections of related fields that can be
+added to a schema.
+</p>
+
+<div class="example">
+
+<strong>Example:</strong><br><br>
+
+Personal Details<br>
+→ First Name<br>
+→ Last Name<br>
+→ Email<br>
+→ Phone
+
+</div>
+
+<p>
+Using field groups allows commonly used fields to be reused across
+different schemas.
+</p>
+
+
+<h2>10. Attributes / Fields</h2>
+
+<p>
+Fields represent individual pieces of information within a schema.
+Each field has a data type and can have additional configuration.
+</p>
+
+<table>
+
+<tr>
+<th>Field</th>
+<th>Example Value</th>
+<th>Type</th>
+</tr>
+
+<tr>
+<td>customerId</td>
+<td>CUST10001</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>firstName</td>
+<td>Rahul</td>
+<td>String</td>
+</tr>
+
+<tr>
+<td>age</td>
+<td>35</td>
+<td>Integer</td>
+</tr>
+
+<tr>
+<td>email</td>
+<td>rahul@example.com</td>
+<td>String</td>
+</tr>
+
+</table>
+
+
+<h2>11. Data Types</h2>
+
+<p>
+A field's data type defines what kind of value can be stored in that
+field.
+</p>
+
+<table>
+
+<tr>
+<th>Data Type</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>String</td>
+<td>Rahul</td>
+</tr>
+
+<tr>
+<td>Integer</td>
+<td>35</td>
+</tr>
+
+<tr>
+<td>Boolean</td>
+<td>true / false</td>
+</tr>
+
+<tr>
+<td>Date</td>
+<td>2026-09-19</td>
+</tr>
+
+<tr>
+<td>Date-Time</td>
+<td>2026-09-19T10:30:00Z</td>
+</tr>
+
+<tr>
+<td>Array</td>
+<td>Multiple values</td>
+</tr>
+
+</table>
+
+
+<h2>12. Required Fields</h2>
+
+<p>
+A field can be configured as required when the business data model
+requires that field to be present.
+</p>
+
+<div class="highlight">
+
+<strong>Example:</strong><br><br>
+
+Customer ID → Required<br>
+Email → Optional
+
+</div>
+
+<p>
+The required configuration should be used carefully because incoming
+data must satisfy the schema requirements.
+</p>
+
+
+<h2>13. Identity Field in a Schema</h2>
+
+<p>
+A field in an XDM schema can be configured as an identity when the
+field represents an identifier that should participate in identity
+handling.
+</p>
+
+<div class="example">
+
+<strong>Example:</strong><br><br>
+
+Field → customerId<br>
+Type → String<br>
+Identity → Enabled<br>
+Namespace → Customer ID
+
+</div>
+
+<div class="flow">
+
+Customer ID
+↓
+Identity Namespace
+↓
+Identity Graph
+↓
+Customer Profile
+
+</div>
+
+
+<h2>14. Primary Identity</h2>
+
+<p>
+A schema can have a primary identity used to identify the entity
+represented by the record.
+</p>
+
+<div class="highlight">
+
+<strong>Example:</strong><br><br>
+
+Field → customerId<br>
+Namespace → Customer ID<br>
+Primary Identity → Yes
+
+</div>
+
+
+<h2>15. Enum</h2>
+
+<p>
+An enum can be used when a field should accept values from a defined
+set of options.
+</p>
+
+<div class="example">
+
+<strong>Example: Customer Type</strong><br><br>
+
+Individual<br>
+Business<br>
+Partner
+
+</div>
+
+<p>
+Using defined values helps maintain consistency in the data.
+</p>
+
+
+<h2>16. Profile Schema vs Experience Event Schema</h2>
+
+<table>
+
+<tr>
+<th>Profile Schema</th>
+<th>Experience Event Schema</th>
+</tr>
+
+<tr>
+<td>Describes a customer or entity</td>
+<td>Describes an interaction or event</td>
+</tr>
+
+<tr>
+<td>Name, Email, Phone</td>
+<td>Product View, Purchase, Login</td>
+</tr>
+
+<tr>
+<td>Customer information</td>
+<td>Event information</td>
+</tr>
+
+<tr>
+<td>Used to represent the entity</td>
+<td>Used to represent activity</td>
+</tr>
+
+</table>
+
+
+<h2>17. Schema and Dataset</h2>
+
+<p>
+A schema defines the structure of the data, while a dataset is where
+the data is stored.
+</p>
+
+<div class="flow">
+
+Schema
+↓
+Defines Data Structure
+
+Dataset
+↓
+Stores Data
+
+</div>
+
+<div class="example">
+
+<strong>Example:</strong><br><br>
+
+Customer Schema<br>
+→ customerId<br>
+→ firstName<br>
+→ lastName<br>
+→ email<br><br>
+
+Customer Dataset<br>
+→ Stores records that follow this schema
+
+</div>
+
+
+<h2>18. Schema and Identity</h2>
+
+<p>
+Identity configuration in the schema allows appropriate fields to
+participate in identity handling.
+</p>
+
+<div class="flow">
+
+Schema
+↓
+Identity Field
+↓
+Identity Namespace
+↓
+Dataset
+↓
+Identity Graph
+↓
+Profile
+
+</div>
+
+
+<h2>19. Schema Design Example</h2>
+
+<div class="example">
+
+<strong>Customer Schema</strong><br><br>
+
+customerId → String → Identity<br>
+firstName → String<br>
+lastName → String<br>
+email → String → Identity<br>
+phone → String → Identity<br>
+customerType → Enum
+
+</div>
+
+
+<h2>20. Tata Business Example</h2>
+
+<p>
+Consider a business ecosystem containing Tata Croma, Tata Motors and
+Tata Insurance.
+</p>
+
+<div class="example">
+
+<strong>Customer:</strong> CUST10001<br><br>
+
+Customer ID → CUST10001<br>
+Email → customer@example.com<br>
+Phone → 9876543210<br><br>
+
+Croma → Product Purchase<br>
+Tata Motors → Vehicle Enquiry<br>
+Tata Insurance → Policy Interaction
+
+</div>
+
+<div class="flow">
+
+Customer Schema
++
+Experience Event Schema
+↓
+Datasets
+↓
+Identity
+↓
+Customer Profile
+↓
+Customer Journey Understanding
+
+</div>
+
+
+<h2>21. Schema to Profile Flow</h2>
+
+<div class="flow">
+
+Source Data
+↓
+XDM Schema
+↓
+Dataset
+↓
+Profile-Enabled Dataset
+↓
+Identity
+↓
+Real-Time Customer Profile
+
+</div>
+
+
+<h2>22. Developer View</h2>
+
+<p>
+As an AEP developer, it is important to understand how data moves from
+source systems into XDM schemas, datasets and ultimately customer
+profiles.
+</p>
+
+<div class="flow">
+
+Source System
+↓
+Data Mapping
+↓
+XDM Schema
+↓
+Dataset
+↓
+Ingestion
+↓
+Identity Resolution
+↓
+Real-Time Customer Profile
+
+</div>
+
+
+<h2>23. Common Schema Design Considerations</h2>
+
+<ul>
+
+<li>Understand the business requirement before creating the schema</li>
+
+<li>Select the appropriate class</li>
+
+<li>Use appropriate field groups</li>
+
+<li>Define meaningful attributes</li>
+
+<li>Select correct data types</li>
+
+<li>Configure identity fields carefully</li>
+
+<li>Use enums where a controlled set of values is required</li>
+
+<li>Avoid creating unnecessary duplicate fields</li>
+
+<li>Design the schema according to the intended dataset and use case</li>
+
+</ul>
+
+
+<h2>24. Schema vs Dataset</h2>
+
+<table>
+
+<tr>
+<th>Schema</th>
+<th>Dataset</th>
+</tr>
+
+<tr>
+<td>Defines the structure of data</td>
+<td>Stores the actual data</td>
+</tr>
+
+<tr>
+<td>Defines fields and data types</td>
+<td>Contains records</td>
+</tr>
+
+<tr>
+<td>Blueprint</td>
+<td>Storage</td>
+</tr>
+
+<tr>
+<td>Describes what the data looks like</td>
+<td>Contains the data itself</td>
+</tr>
+
+</table>
+
+
+<h2>25. Quick Revision</h2>
+
+<div class="highlight">
+
+<strong>Schema</strong> → Defines the structure of data<br><br>
+
+<strong>XDM</strong> → Adobe's standard data model<br><br>
+
+<strong>Class</strong> → Foundation of the schema<br><br>
+
+<strong>Field Group</strong> → Reusable collection of fields<br><br>
+
+<strong>Field / Attribute</strong> → Individual piece of data<br><br>
+
+<strong>Data Type</strong> → Defines what kind of value a field contains<br><br>
+
+<strong>Identity</strong> → Identifies a person, device or entity<br><br>
+
+<strong>Dataset</strong> → Stores data according to a schema
+
+</div>
+
+
+<h2>26. Interview Questions</h2>
+
+<h3>What is an AEP schema?</h3>
+
+<p>
+An AEP schema defines the structure, fields and data types used to
+represent data in Adobe Experience Platform.
+</p>
+
+<h3>What is XDM?</h3>
+
+<p>
+XDM stands for Experience Data Model. It provides a standardized way
+to structure data in Adobe Experience Platform.
+</p>
+
+<h3>What is a field group?</h3>
+
+<p>
+A field group is a reusable collection of related fields that can be
+added to an XDM schema.
+</p>
+
+<h3>What is the difference between a schema and a dataset?</h3>
+
+<p>
+A schema defines the structure of the data, while a dataset stores
+data that follows that structure.
+</p>
+
+<h3>What is an Experience Event?</h3>
+
+<p>
+An Experience Event represents an interaction or activity associated
+with a person or entity at a particular point in time.
+</p>
+
+<h3>Why is identity configured in a schema?</h3>
+
+<p>
+Identity configuration allows appropriate fields to participate in
+identity handling and identity resolution.
+</p>
 
 </div>
 
 </body>
+
 </html>
