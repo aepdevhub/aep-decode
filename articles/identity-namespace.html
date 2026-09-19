@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AEP Identity Namespace Explained | AEP Decode</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        nav a {
+            font-size: 14px;
+            margin-left: 25px;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 25px;
+        }
+
+        .article {
+            background: white;
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+        }
+
+        h1 {
+            color: #1d4ed8;
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #172033;
+        }
+
+        h3 {
+            color: #1d4ed8;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: #536176;
+        }
+
+        .example {
+            background: #eef4ff;
+            border-left: 5px solid #2563eb;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .box {
+            background: #2563eb;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #2563eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #eef4ff;
+        }
+
+        .question {
+            background: #f8fafc;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+
+        @media(max-width: 600px) {
+            .article {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="../index.html">AEP Decode</a>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#learn">Learn</a>
+        <a href="../index.html#developer">Developer</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <article class="article">
+
+        <h1>AEP Identity Namespace Explained</h1>
+
+        <p class="intro">
+            Learn what an Identity Namespace is in Adobe Experience Platform,
+            how it works with identities, and how it helps create a unified
+            customer profile.
+        </p>
+
+        <hr>
+
+        <h2>1. What is Identity in AEP?</h2>
+
+        <p>
+            An identity represents a person, device, account or other entity
+            that can be recognized across different systems.
+        </p>
+
+        <p>
+            For example, a customer may interact with a company using:
+        </p>
+
+        <ul>
+            <li>Email address</li>
+            <li>Mobile number</li>
+            <li>Customer ID</li>
+            <li>CRM ID</li>
+            <li>Device ID</li>
+        </ul>
+
+        <div class="example">
+            <strong>Example:</strong><br>
+            Customer ID = CUST10001<br>
+            Email = customer@example.com
+        </div>
+
+        <h2>2. What is an Identity Namespace?</h2>
+
+        <p>
+            An Identity Namespace provides the context for an identity.
+            It tells AEP what type of identity value it is dealing with.
+        </p>
+
+        <div class="flow">
+
+            <div class="box">
+                Identity Value
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">
+                Identity Namespace
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">
+                Identity Context
+            </div>
+
+        </div>
+
+        <h2>3. Simple Example</h2>
+
+        <table>
+
+            <tr>
+                <th>Identity Value</th>
+                <th>Namespace</th>
+                <th>Meaning</th>
+            </tr>
+
+            <tr>
+                <td>john@example.com</td>
+                <td>Email</td>
+                <td>Customer email identity</td>
+            </tr>
+
+            <tr>
+                <td>CUST10001</td>
+                <td>Customer ID</td>
+                <td>Customer identifier</td>
+            </tr>
+
+            <tr>
+                <td>9876543210</td>
+                <td>Phone</td>
+                <td>Customer phone identity</td>
+            </tr>
+
+        </table>
+
+        <h2>4. Real-World Example</h2>
+
+        <p>
+            Imagine a company that has multiple businesses such as
+            Croma, Tata Motors and Tata Insurance.
+        </p>
+
+        <p>
+            The same customer could interact with multiple businesses.
+            Each system may have a different identifier for that customer.
+        </p>
+
+        <div class="flow">
+
+            <div class="box">Croma Customer ID</div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">Email</div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">CRM ID</div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">Unified Profile</div>
+
+        </div>
+
+        <p>
+            AEP can use identity information to help connect these
+            interactions into a more complete customer view.
+        </p>
+
+        <h2>5. Identity vs Identity Namespace</h2>
+
+        <table>
+
+            <tr>
+                <th>Concept</th>
+                <th>Example</th>
+            </tr>
+
+            <tr>
+                <td>Identity</td>
+                <td>john@example.com</td>
+            </tr>
+
+            <tr>
+                <td>Identity Namespace</td>
+                <td>Email</td>
+            </tr>
+
+        </table>
+
+        <p>
+            Think of it this way:
+        </p>
+
+        <div class="example">
+            <strong>Identity = Value</strong><br>
+            john@example.com
+            <br><br>
+            <strong>Namespace = Meaning / Type</strong><br>
+            Email
+        </div>
+
+        <h2>6. Identity Graph</h2>
+
+        <p>
+            The Identity Graph represents relationships between different
+            identities that belong to the same customer or entity.
+        </p>
+
+        <div class="flow">
+
+            <div class="box">Email</div>
+
+            <div class="arrow">↔</div>
+
+            <div class="box">Customer ID</div>
+
+            <div class="arrow">↔</div>
+
+            <div class="box">Phone</div>
+
+        </div>
+
+        <p>
+            These identity relationships can help AEP build a connected
+            understanding of a customer.
+        </p>
+
+        <h2>7. Why Identity Matters in AEP</h2>
+
+        <ul>
+            <li>Helps connect customer interactions.</li>
+            <li>Supports Real-Time Customer Profile.</li>
+            <li>Enables cross-channel customer analysis.</li>
+            <li>Helps unify identities from different systems.</li>
+            <li>Supports segmentation and activation use cases.</li>
+        </ul>
+
+        <h2>8. Interview Questions</h2>
+
+        <div class="question">
+            <strong>Q1. What is an Identity Namespace?</strong>
+            <p>
+                It provides context to an identity value, such as Email,
+                Phone or Customer ID.
+            </p>
+        </div>
+
+        <div class="question">
+            <strong>Q2. What is the difference between Identity and Namespace?</strong>
+            <p>
+                Identity is the actual value, while the namespace describes
+                the type or context of that value.
+            </p>
+        </div>
+
+        <div class="question">
+            <strong>Q3. What is an Identity Graph?</strong>
+            <p>
+                It represents relationships between identities associated
+                with an entity or customer.
+            </p>
+        </div>
+
+        <div class="question">
+            <strong>Q4. Why is identity important for Real-Time Customer Profile?</strong>
+            <p>
+                Identity information helps connect customer data and
+                interactions to customer profiles.
+            </p>
+        </div>
+
+        <h2>9. Key Takeaway</h2>
+
+        <div class="example">
+
+            <strong>Remember:</strong>
+
+            <p>
+                Identity = the actual identifier.
+            </p>
+
+            <p>
+                Namespace = the context/type of the identifier.
+            </p>
+
+            <p>
+                Identity Graph = relationships between identities.
+            </p>
+
+        </div>
+
+        <a class="back" href="../index.html">
+            ← Back to AEP Decode
+        </a>
+
+    </article>
+
+</div>
+
+<footer>
+    AEP Decode · Practical Adobe Experience Platform Learning
+</footer>
+
+</body>
+</html>
