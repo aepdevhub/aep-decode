@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AEP Decode | Adobe Experience Platform for Developers</title>
+
+    <meta name="description"
+          content="AEP Decode provides practical Adobe Experience Platform tutorials, developer guides, APIs, real-world scenarios and interview preparation.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #172033;
+            background: #f7f9fc;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            padding: 90px 8%;
+            background: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 19px;
+            color: #5b6475;
+        }
+
+        .button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 65px 8%;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
+
+        .card p {
+            color: #626b7a;
+        }
+
+        .about {
+            background: #eef3ff;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            color: #4b5563;
+        }
+
+        footer {
+            background: #111827;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">AEP Decode</div>
+
+    <nav>
+        <a href="#learn">Learn</a>
+        <a href="#developer">Developer</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#interviews">Interviews</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Decode <span>AEP</span>.</h1>
+
+    <p>
+        Simplifying Adobe Experience Platform for developers
+        through practical tutorials, real-world scenarios,
+        APIs and interview preparation.
+    </p>
+
+    <a class="button" href="#learn">Start Learning</a>
+</section>
+
+<section class="section" id="learn">
+
+    <h2>Learn AEP</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>AEP Fundamentals</h3>
+            <p>
+                Understand AEP architecture, schemas, datasets,
+                ingestion and Real-Time Customer Profile.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Identity</h3>
+            <p>
+                Learn identity namespaces, identity graphs,
+                identity stitching and customer identities.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Schema & Dataset</h3>
+            <p>
+                Learn how schemas, field groups and datasets
+                work together in Adobe Experience Platform.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Real-Time Profile</h3>
+            <p>
+                Understand how customer profiles are created,
+                merged and activated.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="developer">
+
+    <h2>AEP Developer</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>AEP APIs</h3>
+            <p>
+                Practical REST API tutorials and examples
+                for AEP developers.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Postman</h3>
+            <p>
+                Learn authentication, access tokens,
+                headers and API testing using Postman.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Automation</h3>
+            <p>
+                Explore JavaScript and Python approaches
+                for automating AEP tasks.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="scenarios">
+
+    <h2>Real-World Scenarios</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Customer 360</h3>
+            <p>
+                Understand how customer data from multiple
+                systems can be brought together in AEP.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>CRM → AEP</h3>
+            <p>
+                Explore practical enterprise data flows
+                from CRM systems into AEP.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>AEM → AEP</h3>
+            <p>
+                Learn how AEM developers can understand
+                and work with AEP integrations.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="interviews">
+
+    <h2>AEP Interview Preparation</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Scenario-Based Questions</h3>
+            <p>
+                Prepare for real-world AEP architecture
+                and implementation questions.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Developer Questions</h3>
+            <p>
+                Practice AEP API, identity, schema,
+                dataset and ingestion questions.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Project Discussions</h3>
+            <p>
+                Learn how to explain your AEP project
+                clearly during interviews.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section about">
+
+    <h2>About AEP Decode</h2>
+
+    <p>
+        AEP Decode is an independent learning resource focused
+        on simplifying Adobe Experience Platform concepts for
+        developers. The goal is to explain complex concepts
+        using practical examples, implementation scenarios
+        and developer-focused tutorials.
+    </p>
+
+</section>
+
+<footer>
+    © 2026 AEP Decode. Independent educational resource.
+</footer>
+
+</body>
+</html>
