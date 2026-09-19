@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AEP Identity | AEP Decode</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fb;
+    color: #172033;
+    line-height: 1.6;
+}
+
+header {
+    background: #101828;
+    color: white;
+    padding: 20px 8%;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 950px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #2563eb;
+}
+
+h2 {
+    margin-top: 35px;
+    color: #172033;
+}
+
+h3 {
+    color: #2563eb;
+}
+
+.example {
+    background: #eef4ff;
+    border-left: 4px solid #2563eb;
+    padding: 18px;
+    margin: 20px 0;
+}
+
+.flow {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 18px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.highlight {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    padding: 18px;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #d0d5dd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #eef4ff;
+}
+
+code {
+    background: #f1f5f9;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+li {
+    margin: 8px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<a href="../index.html">AEP Decode</a>
+</header>
+
+<div class="container">
+
+<h1>AEP Identity</h1>
+
+<p>
+Identity is one of the most important concepts in Adobe Experience Platform.
+It helps AEP understand that different identifiers can belong to the same
+person, device or business entity.
+</p>
+
+<h2>1. What is an Identity?</h2>
+
+<p>
+An identity represents an identifiable person, device, account or other
+entity across different systems.
+</p>
+
+<div class="example">
+
+<strong>Example customer:</strong><br><br>
+
+Customer ID → CUST10001<br>
+Email → customer@example.com<br>
+Mobile → 9876543210<br>
+CRM ID → CRM78901
+
+</div>
+
+<p>
+These identifiers may come from different systems, but they can represent
+the same customer.
+</p>
+
+<h2>2. What is an Identity Namespace?</h2>
+
+<p>
+An Identity Namespace provides context for an identity value. It tells AEP
+what type of identifier the value represents.
+</p>
+
+<table>
+
+<tr>
+<th>Namespace</th>
+<th>Identity Value</th>
+</tr>
+
+<tr>
+<td>Email</td>
+<td>customer@example.com</td>
+</tr>
+
+<tr>
+<td>Phone</td>
+<td>9876543210</td>
+</tr>
+
+<tr>
+<td>Customer ID</td>
+<td>CUST10001</td>
+</tr>
+
+<tr>
+<td>CRM ID</td>
+<td>CRM78901</td>
+</tr>
+
+</table>
+
+<div class="highlight">
+
+<strong>Remember:</strong><br><br>
+
+Identity Value + Identity Namespace = Identity
+
+</div>
+
+<h2>3. Identity Example</h2>
+
+<div class="example">
+
+Email Namespace<br>
+↓<br>
+customer@example.com<br><br>
+
+Customer ID Namespace<br>
+↓<br>
+CUST10001<br><br>
+
+CRM ID Namespace<br>
+↓<br>
+CRM78901
+
+</div>
+
+<p>
+AEP can use these identifiers as part of identity resolution when the
+appropriate identity relationships are available.
+</p>
+
+<h2>4. Identity Graph</h2>
+
+<p>
+The Identity Graph represents relationships between identities.
+It can connect identifiers that are associated with the same customer.
+</p>
+
+<div class="flow">
+
+Email
+<br>↓
+Customer
+<br>↑
+Customer ID
+<br>↑
+CRM ID
+<br>↑
+Mobile
+
+</div>
+
+<p>
+This relationship helps AEP build a more complete understanding of a
+customer across different systems.
+</p>
+
+<h2>5. Tata / Croma Example</h2>
+
+<p>
+Consider a Tata ecosystem containing Croma, Tata Motors and Tata Insurance.
+A customer may interact with multiple Tata businesses using different
+identifiers.
+</p>
+
+<div class="example">
+
+<strong>Customer:</strong> CUST10001<br><br>
+
+Croma → customer@example.com<br>
+Tata Motors → CRM78901<br>
+Tata Insurance → 9876543210<br><br>
+
+Common Customer ID → CUST10001
+
+</div>
+
+<div class="flow">
+
+Croma
++
+Tata Motors
++
+Tata Insurance
+↓
+Identity Resolution
+↓
+Unified Customer Understanding
+
+</div>
+
+<h2>6. Identity in an XDM Schema</h2>
+
+<p>
+An XDM field can be configured to participate in identity handling.
+For example, a Customer ID or Email field can be designated as an identity
+when the data model and use case require it.
+</p>
+
+<div class="example">
+
+<strong>Example:</strong><br><br>
+
+Customer ID<br>
+Type → String<br>
+Identity → Yes<br>
+Identity Namespace → Customer ID
+
+</div>
+
+<h2>7. Primary Identity</h2>
+
+<p>
+A primary identity can be designated for a record when defining the identity
+behavior of the schema.
+</p>
+
+<div class="highlight">
+
+Example:<br><br>
+
+Customer ID = CUST10001<br>
+Namespace = Customer ID<br>
+Primary Identity = Yes
+
+</div>
+
+<h2>8. Identity Resolution</h2>
+
+<p>
+Identity resolution is the process of determining relationships between
+different identity values so that customer information from different
+sources can be connected.
+</p>
+
+<div class="flow">
+
+Email
++
+Mobile
++
+CRM ID
++
+Customer ID
+↓
+Identity Resolution
+↓
+Customer Profile
+
+</div>
+
+<h2>9. Why Identity is Important in AEP</h2>
+
+<ul>
+
+<li>Connects customer information from different systems</li>
+
+<li>Supports unified customer profiles</li>
+
+<li>Helps connect online and offline interactions</li>
+
+<li>Supports customer journey analysis</li>
+
+<li>Can support segmentation and activation use cases</li>
+
+<li>Helps understand relationships between identifiers</li>
+
+</ul>
+
+<h2>10. Identity vs Identity Namespace</h2>
+
+<table>
+
+<tr>
+<th>Identity</th>
+<th>Identity Namespace</th>
+</tr>
+
+<tr>
+<td>The actual identifier value</td>
+<td>Defines the type/context of the identifier</td>
+</tr>
+
+<tr>
+<td>CUST10001</td>
+<td>Customer ID</td>
+</tr>
+
+<tr>
+<td>customer@example.com</td>
+<td>Email</td>
+</tr>
+
+<tr>
+<td>9876543210</td>
+<td>Phone</td>
+</tr>
+
+</table>
+
+<h2>11. Developer View</h2>
+
+<p>
+As an AEP developer, you should understand how identity information moves
+from source data into XDM, datasets and ultimately customer profiles.
+</p>
+
+<div class="flow">
+
+Source Data
+↓
+XDM Schema
+↓
+Identity Field
+↓
+Identity Namespace
+↓
+Dataset
+↓
+Identity Graph
+↓
+Real-Time Customer Profile
+
+</div>
+
+<h2>12. Interview Questions</h2>
+
+<h3>What is an identity in AEP?</h3>
+
+<p>
+An identity is an identifier representing a person, device, account or
+other entity.
+</p>
+
+<h3>What is an identity namespace?</h3>
+
+<p>
+An identity namespace provides context for an identity value, such as Email,
+Phone or Customer ID.
+</p>
+
+<h3>What is an identity graph?</h3>
+
+<p>
+An identity graph represents relationships between identity values and
+helps connect identifiers associated with the same entity.
+</p>
+
+<h3>Why is identity important in AEP?</h3>
+
+<p>
+Identity allows data from different sources and systems to be connected
+when those identifiers represent the same customer or entity.
+</p>
+
+<h2>13. Quick Revision</h2>
+
+<div class="highlight">
+
+<strong>Identity</strong> → Who or what is being identified?<br><br>
+
+<strong>Identity Value</strong> → The actual identifier<br><br>
+
+<strong>Identity Namespace</strong> → What type of identifier is it?<br><br>
+
+<strong>Identity Graph</strong> → How are identifiers related?<br><br>
+
+<strong>Identity Resolution</strong> → Connecting related identities
+
+</div>
+
+</div>
+
+</body>
+
+</html>
