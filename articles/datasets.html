@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AEP Datasets | AEP Decode</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fb;
+    color: #172033;
+    line-height: 1.6;
+}
+
+header {
+    background: #101828;
+    color: white;
+    padding: 20px 8%;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 950px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #2563eb;
+}
+
+h2 {
+    margin-top: 35px;
+    color: #172033;
+}
+
+h3 {
+    color: #2563eb;
+}
+
+.example {
+    background: #eef4ff;
+    border-left: 4px solid #2563eb;
+    padding: 18px;
+    margin: 20px 0;
+}
+
+.flow {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 18px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+code {
+    background: #f1f5f9;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+li {
+    margin: 8px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #d0d5dd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #eef4ff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<a href="../index.html">AEP Decode</a>
+</header>
+
+<div class="container">
+
+<h1>AEP Datasets</h1>
+
+<p>
+An AEP Dataset is a storage container used to hold data in Adobe Experience Platform.
+A dataset is associated with an XDM Schema, which defines the structure of the data.
+</p>
+
+<h2>1. What is a Dataset?</h2>
+
+<p>
+Think of a dataset as a container where actual customer data records are stored.
+The schema defines what the data should look like, while the dataset stores the data.
+</p>
+
+<div class="example">
+
+<strong>Simple example:</strong><br><br>
+
+Schema → Customer Profile Schema<br>
+Dataset → Customer Profile Dataset<br><br>
+
+Customer ID → CUST10001<br>
+Name → Ananya<br>
+Email → ananya@example.com<br>
+Mobile → 9876543210
+
+</div>
+
+<h2>2. Schema vs Dataset</h2>
+
+<table>
+
+<tr>
+<th>Schema</th>
+<th>Dataset</th>
+</tr>
+
+<tr>
+<td>Defines the structure of data</td>
+<td>Stores the actual data</td>
+</tr>
+
+<tr>
+<td>Defines fields and data types</td>
+<td>Contains records</td>
+</tr>
+
+<tr>
+<td>Acts as a blueprint</td>
+<td>Acts as a data container</td>
+</tr>
+
+<tr>
+<td>Example: Customer ID, Email, Mobile</td>
+<td>Example: CUST10001, customer@example.com</td>
+</tr>
+
+</table>
+
+<div class="flow">
+
+Schema → Dataset → Data Ingestion → Data Lake
+
+</div>
+
+<h2>3. Types of Dataset</h2>
+
+<p>
+A dataset is generally created from an XDM schema. The schema determines the
+kind of data the dataset is designed to hold.
+</p>
+
+<table>
+
+<tr>
+<th>Data Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Record Data</td>
+<td>Stores information about entities</td>
+<td>Customer profile information</td>
+</tr>
+
+<tr>
+<td>Time-Series Data</td>
+<td>Stores events that happen over time</td>
+<td>Product view, purchase, login</td>
+</tr>
+
+</table>
+
+<h2>4. Profile-Enabled Dataset</h2>
+
+<p>
+A dataset can be enabled for Real-Time Customer Profile when the associated
+schema supports Profile. Data from Profile-enabled datasets can contribute
+to a unified customer profile.
+</p>
+
+<div class="example">
+
+<strong>Example:</strong><br><br>
+
+Customer Profile Dataset<br>
+→ Customer ID<br>
+→ Email<br>
+→ Mobile<br>
+→ Loyalty Tier<br><br>
+
+Profile Enabled = Yes
+
+</div>
+
+<div class="flow">
+
+Profile Schema → Profile-Enabled Dataset → Real-Time Customer Profile
+
+</div>
+
+<h2>5. Experience Event Dataset</h2>
+
+<p>
+Experience Event datasets store customer interactions that happen over time.
+These events can be used to understand customer behavior.
+</p>
+
+<div class="example">
+
+<strong>Example:</strong><br><br>
+
+Customer ID → CUST10001<br>
+Event → Product Viewed<br>
+Product → LAPTOP123<br>
+Timestamp → 2026-09-19T10:30:00Z
+
+</div>
+
+<h2>6. Tata / Croma Example</h2>
+
+<p>
+Imagine a Tata ecosystem containing Croma, Tata Motors, Tata Insurance
+and other Tata businesses.
+</p>
+
+<div class="example">
+
+<strong>Customer:</strong> CUST10001<br><br>
+
+Croma Dataset → Laptop Purchase<br>
+Tata Motors Dataset → SUV Interest<br>
+Insurance Dataset → Car Insurance<br><br>
+
+Email → customer@example.com<br>
+Mobile → 9876543210
+
+</div>
+
+<p>
+Different systems can send customer information into different datasets.
+Identity information can then help AEP connect information belonging to
+the same customer.
+</p>
+
+<h2>7. Dataset and Data Ingestion</h2>
+
+<p>
+Before data can be stored in a dataset, the incoming data must follow the
+structure defined by the associated XDM schema.
+</p>
+
+<div class="flow">
+
+Source System
+↓
+Data Ingestion
+↓
+XDM Schema
+↓
+Dataset
+↓
+Data Lake
+
+</div>
+
+<h2>8. Dataset and Real-Time Customer Profile</h2>
+
+<p>
+When a dataset is enabled for Real-Time Customer Profile and receives
+appropriate profile or event data, that data can contribute to the unified
+customer profile.
+</p>
+
+<div class="flow">
+
+Source
+→ Schema
+→ Dataset
+→ Identity
+→ Real-Time Customer Profile
+
+</div>
+
+<h2>9. Dataset Example for an AEP Project</h2>
+
+<div class="example">
+
+<strong>Dataset Name:</strong><br>
+Tata_Customer_Profile_Dataset<br><br>
+
+<strong>Schema:</strong><br>
+Tata Customer Profile Schema<br><br>
+
+<strong>Fields:</strong><br>
+Customer ID<br>
+Email<br>
+Mobile<br>
+First Name<br>
+Last Name<br>
+Loyalty Tier<br>
+City
+
+</div>
+
+<h2>10. What You Should Know as an AEP Developer</h2>
+
+<ul>
+
+<li>What is an AEP Dataset?</li>
+
+<li>Difference between Schema and Dataset</li>
+
+<li>How to create a Dataset</li>
+
+<li>How to associate a Dataset with an XDM Schema</li>
+
+<li>Difference between record and time-series data</li>
+
+<li>What is a Profile-enabled Dataset?</li>
+
+<li>How data is ingested into a Dataset</li>
+
+<li>How Dataset data contributes to Real-Time Customer Profile</li>
+
+<li>How to work with Datasets using AEP APIs</li>
+
+<li>How to monitor Dataset ingestion and batches</li>
+
+</ul>
+
+<h2>11. Developer View</h2>
+
+<p>
+As an AEP developer, you may work with datasets through the AEP UI as well
+as REST APIs.
+</p>
+
+<div class="example">
+
+<strong>Typical developer flow:</strong><br><br>
+
+Create Schema<br>
+↓<br>
+Create Dataset<br>
+↓<br>
+Configure Data Ingestion<br>
+↓<br>
+Load Data<br>
+↓<br>
+Validate Dataset<br>
+↓<br>
+Enable Profile when required<br>
+↓<br>
+Use data for Profile, Segmentation or Activation
+
+</div>
+
+<h2>12. Interview Question</h2>
+
+<h3>Question: What is the difference between a schema and a dataset in AEP?</h3>
+
+<p>
+<strong>Answer:</strong>
+A schema defines the structure and meaning of the data, while a dataset
+is the container where records following that schema are stored.
+</p>
+
+<h3>Question: Can multiple datasets use the same schema?</h3>
+
+<p>
+Yes. A schema can be associated with multiple datasets when the same data
+structure is required for different data collections or use cases.
+</p>
+
+<h3>Question: What is a Profile-enabled dataset?</h3>
+
+<p>
+A Profile-enabled dataset is a dataset configured to contribute eligible
+data to Real-Time Customer Profile.
+</p>
+
+</div>
+
+</body>
+</html>
